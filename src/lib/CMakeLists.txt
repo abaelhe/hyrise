@@ -293,6 +293,10 @@ set(
     optimizer/strategy/abstract_rule.hpp
     optimizer/strategy/between_composition_rule.cpp
     optimizer/strategy/between_composition_rule.hpp
+    optimizer/strategy/create_fds.cpp
+    optimizer/strategy/create_fds.hpp
+    optimizer/strategy/create_unique_constraints.cpp
+    optimizer/strategy/create_unique_constraints.hpp
     optimizer/strategy/chunk_pruning_rule.cpp
     optimizer/strategy/chunk_pruning_rule.hpp
     optimizer/strategy/column_pruning_rule.cpp
