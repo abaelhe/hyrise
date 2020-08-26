@@ -15,11 +15,13 @@ std::shared_ptr<AbstractLQPNode> LogicalPlanRootNode::_on_shallow_copy(LQPNodeMa
 }
 
 std::shared_ptr<LQPUniqueConstraints> LogicalPlanRootNode::unique_constraints() const {
-  Fail("LogicalPlanRootNode is not expected to be queried for unique constraints.");
+  Assert(!right_input(), "Did not expect right input node");
+  return left_input()->unique_constraints();
 }
 
 std::vector<FunctionalDependency> LogicalPlanRootNode::non_trivial_functional_dependencies() const {
-  Fail("LogicalPlanRootNode is not expected to be queried for functional dependencies.");
+  Assert(!right_input(), "Did not expect right input node");
+  return left_input()->non_trivial_functional_dependencies();
 }
 
 bool LogicalPlanRootNode::_on_shallow_equals(const AbstractLQPNode& rhs, const LQPNodeMapping& node_mapping) const {
