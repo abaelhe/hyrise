@@ -8,6 +8,8 @@
 #include "expression/lqp_subquery_expression.hpp"
 #include "logical_query_plan/logical_plan_root_node.hpp"
 #include "strategy/between_composition_rule.hpp"
+#include "strategy/create_fds.hpp"
+#include "strategy/create_unique_constraints.hpp"
 #include "strategy/chunk_pruning_rule.hpp"
 #include "strategy/column_pruning_rule.hpp"
 #include "strategy/dependent_group_by_reduction_rule.hpp"
@@ -150,6 +152,10 @@ std::shared_ptr<Optimizer> Optimizer::create_default_optimizer() {
   optimizer->add_rule(std::make_unique<IndexScanRule>());
 
   optimizer->add_rule(std::make_unique<PredicateMergeRule>());
+
+  // For performance measurements only
+  optimizer->add_rule(std::make_unique<CreateFDsRule>());
+  optimizer->add_rule(std::make_unique<CreateUniqueConstraintsRule>());
 
   return optimizer;
 }

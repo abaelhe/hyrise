@@ -6,8 +6,9 @@ namespace opossum {
 
 void CreateFDsRule::apply_to(const std::shared_ptr<AbstractLQPNode>& lqp) const {
 
-  for(auto int i = 0; i < 100; ++i) {
+  for(size_t i = 0; i < 100; ++i) {
     const auto& fds = lqp->functional_dependencies();
+    Assert(fds.size() >= 0, "Dummy usage");
   }
 
 }
